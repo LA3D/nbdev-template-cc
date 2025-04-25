@@ -1,0 +1,13 @@
+# .jupytext.toml
+# This file configures jupytext to pair notebooks with py:percent files
+
+[formats]
+"nbs/*.ipynb" = ["ipynb", "py:percent"]
+
+# Notebook metadata 
+[jupyter]
+jupytext_formats = "ipynb,py:percent"
+
+# When adding content to paired files, synchronize all cell metadata
+[pairs]
+metadata_map = {"jupytext.text_representation" = "jupytext"}

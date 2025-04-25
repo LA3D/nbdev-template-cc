@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=64.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "%PROJECT_NAME%"  # Will be replaced during project creation
+requires-python = ">=3.10"
+dynamic = [
+    "keywords",
+    "description",
+    "version",
+    "dependencies",
+    "optional-dependencies",
+    "readme",
+    "license", 
+    "authors",
+    "classifiers",
+    "entry-points",
+    "scripts",
+    "urls"
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ipykernel",
+    "nbdev",
+    "jupytext",
+    "python-dotenv",
+    "ipywidgets",
+    "rich-cli",
+]
+
+[tool.uv]
+cache-keys = [
+    { file = "pyproject.toml" },
+    { file = "settings.ini" },
+    { file = "setup.py" }
+]
+
+[tool.jupytext]
+formats = "ipynb,py:percent"
