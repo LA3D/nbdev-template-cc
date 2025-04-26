@@ -1,7 +1,27 @@
+# .github/workflows/ci.yaml
 name: CI
-on:  [workflow_dispatch, pull_request, push]
+on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps: [uses: answerdotai/workflows/nbdev-ci@master]
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v5
+      with: { python-version: '3.11' }
+
+    - name: Install uv
+      run: pip install -U uv
+
+    - name: Sync dependencies & build
+      run: |
+        uv pip sync          # installs dev dependencies too
+        nbdev_export
+        nbdev_clean
+
+    - name: Notebook tests
+      run: nbdev_test
+
+    - name: Pytest suite
+      run: pytest -q
