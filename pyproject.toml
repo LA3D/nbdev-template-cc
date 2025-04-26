@@ -20,23 +20,15 @@ dynamic = [
     "urls"
 ]
 
-[dependency-groups]
-dev = [
-    "pytest",
-    "ipykernel",
-    "nbdev",
-    "jupytext",
-    "python-dotenv",
-    "ipywidgets",
-    "rich-cli",
-]
+[project.optional-dependencies]
+dev = ["nbdev", "pytest", "ruff","ipykernel", "python-dotenv","pre-commit"]
 
 [tool.uv]
 cache-keys = [
-    { file = "pyproject.toml" },
-    { file = "settings.ini" },
-    { file = "setup.py" }
+  { file = "pyproject.toml" },
+  { file = "settings.ini" }
 ]
+
 
 [tool.jupytext]
 formats = "ipynb,py:percent"
